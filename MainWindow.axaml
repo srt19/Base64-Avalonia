@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
+        x:Class="Base64_Avalonia.MainWindow"
+        Width="600" Height="450" CanResize="True"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Assets/favicon.ico"
+        Title="Base64 Encode/Decode">
+  <Grid RowDefinitions="auto, *, auto, *, auto"
+        ColumnDefinitions="*" Margin="15">
+    <StackPanel Grid.Column="0" Grid.Row="0"
+                Orientation="Horizontal" Spacing="5" 
+                HorizontalAlignment="Center">
+      <RadioButton Name="Enc_rad" Content="Encode"
+                   IsChecked="true"/>
+      <RadioButton Name="Dec_rad" Content="Decode" />
+      <CheckBox Name="Url_cek" IsEnabled="False" Content="URL?" />
+    </StackPanel>
+    <TextBox Name="Input_box" Watermark="Type here!"
+             MinWidth="550" MinHeight="150" TextWrapping="Wrap"
+             Grid.Column="0" Grid.Row="1" Margin="5"/>
+    <Button Name="Convert_button" Content="Encode"
+            Margin="5" HorizontalAlignment="Center"
+            Grid.Column="0" Grid.Row="2"/>
+    <TextBox Name="Output_box" Watermark="Output goes here!"
+             MinWidth="550" MinHeight="150" TextWrapping="Wrap"
+             Grid.Column="0" Grid.Row="3" Margin="5"/>
+    <StackPanel Grid.Column="0" Grid.Row="4" Orientation="Horizontal"
+                HorizontalAlignment="Center">
+      <CheckBox Name="Sav_text" Content="Save to txt"
+                Margin="10, 0, 5, 5" IsEnabled="False" />
+      <Button Name="Browse_sav" Content="Browse" Margin="10, 0, 5, 5" />
+    </StackPanel>
+  </Grid>
+</Window>
