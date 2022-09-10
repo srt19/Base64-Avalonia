@@ -12,15 +12,10 @@ namespace Base64_Avalonia
         {
             InitializeComponent();
 
-            var Enc_rad_clik = this.FindControl<RadioButton>("Enc_rad");
-            var Dec_rad_click = this.FindControl<RadioButton>("Dec_rad");
-            var Convert_click = this.FindControl<Button>("Convert_button");
-            var Browse_click = this.FindControl<Button>("Browse_sav");
-            
-            Enc_rad_clik.Click += CheckMode;
-            Dec_rad_click.Click += CheckMode;
-            Convert_click.Click += Run_convert;
-            Browse_click.Click += Browse_txt;
+            Enc_rad.Click += CheckMode;
+            Dec_rad.Click += CheckMode;
+            Convert_button.Click += Run_convert;
+            Browse_sav.Click += Browse_txt;
         }
         protected internal bool B64mode = true;
         protected internal string SavPath = string.Empty;
