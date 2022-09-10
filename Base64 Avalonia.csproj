@@ -9,6 +9,9 @@
     <ApplicationIcon>Assets\favicon.ico</ApplicationIcon>
     <Title>Base64 Avalonia</Title>
     <Authors>Ari Kurniawan</Authors>
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>none</DebugType>
