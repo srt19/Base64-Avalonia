@@ -1,0 +1,49 @@
+name: Deploy Windows Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+env:
+  PROJECT_PATH: "Base64 Avalonia.csproj"
+
+jobs:
+  deploy:
+    name: Publish and Upload
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+        
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+
+      - run: dotnet restore ${{ env.PROJECT_PATH }}
+
+      - run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore
+      
+      - run: dotnet publish ${{ env.PROJECT_PATH }} -c Release --no-build
+      
+      - name: Get version
+        id: get_version
+        shell: bash
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+      
+      - name: Compress 7z
+        run: |
+          cd bin/Release/net6.0-windows/win-x86/publish
+          7z a -t7z -m0=lzma2 -mx=9 -mfb=64 -md=64m -ms=on Base64Avalonia.${{ steps.get_version.outputs.VERSION }}.7z *
+          
+      - name: Upload Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: bin/Release/net6.0-windows/win-x86/publish/*.7z
+          tag: ${{ github.ref }}
+          file_glob: true
+          prerelease: true
