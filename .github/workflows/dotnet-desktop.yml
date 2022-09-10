@@ -6,7 +6,7 @@ on:
       - "v*"
 
 env:
-  PROJECT_PATH: "Base64 Avalonia.csproj"
+  PROJECT_PATH: Base64 Avalonia.csproj
 
 jobs:
   deploy:
